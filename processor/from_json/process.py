@@ -1,13 +1,15 @@
 import json
 
 # give the data type as 'raw' or 'reoriented'
-type = 'reoriented'
+type = 'raw'
 # name of the file you want to edit
-file_name = 'J5-Tida-Walpola-Matara' # change accordingly
+file_name = 'bump' # change accordingly
 # list of timestamp for potholes
 pothole_array = []  # change accordingly
 # list of timestamp for bumps
-bump_array = [1528979527912,1528979521392]  # change accordingly
+bump_array = [1529838293132, 1529838293213,  1529838293312,1529838293412,  1529838293512,  1529838293612,  1529838293732,  1529838293832, 1529838293951,
+              1529838294019,1529838294154,  1529838294214,  1529838294332,1529838294432,  1529838294532,  1529838294632,  1529838294753, 1529838294834,
+              1529838294932]  # change accordingly
 # list of timestamp for speed breakers
 speed_breaker_array = []  # change accordingly
 
