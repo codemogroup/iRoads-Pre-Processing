@@ -34,44 +34,45 @@ def calcSpeed(lon1, lat1, lon2, lat2, time1, time2):
     return speed
 
 print("start")
-with open('../../input/txt/raw/j5_tida_sirini1.txt', 'r') as myfile:
-    data = myfile.read()
-    data_array = data.split("},{")
-    newData = []
-    for k in range(len(data_array)):
-        newItem = {}
-        item_object = data_array[k].split(",")
-
-
-        newItem["lon"] = item_object[1].split("=")[1]
-        newItem["acceY"] = item_object[2].split("=")[1]
-        newItem["acceY_raw"] = item_object[3].split("=")[1]
-        newItem["time"] = int(item_object[4].split("=")[1])
-        # print(newItem["time"])
-        newItem["acceX"] = item_object[5].split("=")[1]
-        newItem["obdRpm"] = item_object[6].split("=")[1]
-        newItem["imei"] = item_object[7].split("=")[1]
-        # newItem["gpsSpeed"] = item_object[8].split("=")[1]
-        # newItem["journeyID"] = item_object[9].split("=")[1]
-        newItem["journeyID"] = item_object[8].split("=")[1]
-        # newItem["obdSpeed"] = item_object[10].split("=")[1]
-        newItem["obdSpeed"] = item_object[9].split("=")[1]
-        # newItem["acceZ_raw"] = item_object[11].split("=")[1]
-        newItem["acceZ_raw"] = item_object[10].split("=")[1]
-        # newItem["dataType"] = item_object[13].split("=")[1]
-        newItem["dataType"] = item_object[12].split("=")[1]
-        # newItem["lat"] = item_object[14].split("=")[1]
-        newItem["lat"] = item_object[13].split("=")[1]
-        # newItem["acceX_raw"] = item_object[15].split("=")[1]
-        newItem["acceX_raw"] = item_object[14].split("=")[1]
-        # newItem["acceZ"] = item_object[16].split("=")[1]
-        newItem["acceZ"] = item_object[15].split("=")[1]
-
-        newData.append(newItem)
+with open('../../input/json/raw/bump.json', 'r') as myfile:
+    newData = json.load(myfile)
+    # data = myfile.read()
+    # data_array = data.split("},{")
+    # newData = []
+    # for k in range(len(data_array)):
+    #     newItem = {}
+    #     item_object = data_array[k].split(",")
+    #
+    #
+    #     newItem["lon"] = item_object[1].split("=")[1]
+    #     newItem["acceY"] = item_object[2].split("=")[1]
+    #     newItem["acceY_raw"] = item_object[3].split("=")[1]
+    #     newItem["time"] = int(item_object[4].split("=")[1])
+    #     # print(newItem["time"])
+    #     newItem["acceX"] = item_object[5].split("=")[1]
+    #     newItem["obdRpm"] = item_object[6].split("=")[1]
+    #     newItem["imei"] = item_object[7].split("=")[1]
+    #     # newItem["gpsSpeed"] = item_object[8].split("=")[1]
+    #     # newItem["journeyID"] = item_object[9].split("=")[1]
+    #     newItem["journeyID"] = item_object[8].split("=")[1]
+    #     # newItem["obdSpeed"] = item_object[10].split("=")[1]
+    #     newItem["obdSpeed"] = item_object[9].split("=")[1]
+    #     # newItem["acceZ_raw"] = item_object[11].split("=")[1]
+    #     newItem["acceZ_raw"] = item_object[10].split("=")[1]
+    #     # newItem["dataType"] = item_object[13].split("=")[1]
+    #     newItem["dataType"] = item_object[12].split("=")[1]
+    #     # newItem["lat"] = item_object[14].split("=")[1]
+    #     newItem["lat"] = item_object[13].split("=")[1]
+    #     # newItem["acceX_raw"] = item_object[15].split("=")[1]
+    #     newItem["acceX_raw"] = item_object[14].split("=")[1]
+    #     # newItem["acceZ"] = item_object[16].split("=")[1]
+    #     newItem["acceZ"] = item_object[15].split("=")[1]
+    #
+    #     newData.append(newItem)
 
     # data1 = json.loads(input, encoding='utf-8')
 
-    newData = sorted(newData,key = lambda x : x["time"])
+    # newData = sorted(newData,key = lambda x : x["time"])
     print("1111111111111111111111111111111111111111111111")
     for item in newData:
         print(item["time"])
@@ -107,12 +108,12 @@ with open('../../input/txt/raw/j5_tida_sirini1.txt', 'r') as myfile:
     for item in newData:
         print(item["gpsSpeed"])
 
-    print("Length    : " + str(len(data_array)))
-    print(data_array[0])
+    # print("Length    : " + str(len(data_array)))
+    # print(data_array[0])
 
 
 
-with open('../../output/from_txt/raw/j5_tida_sirini1.json', 'w', encoding='utf8') as outfile:
+with open('../../output/from_json/raw/bump1.json', 'w', encoding='utf8') as outfile:
     json.dump(newData, outfile, ensure_ascii=False, indent=4)
 
 print("end")
