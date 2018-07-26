@@ -3,9 +3,9 @@ import json
 # give the data type as 'raw' or 'reoriented'
 type = 'raw'
 # name of the file you want to edit
-file_name = 'j7uduwila1' # change accordingly
+file_name = 'alawellaMataraHTC' # change accordingly
 # list of timestamp for potholes
-pothole_array = [1530858189559, 1530858190359, 1530858194360, 1530858195359, 1530858205179, 1530858205979, 1530858216399, 1530858217099, 1530858220607, 1530858222019, 1530858232136, 1530858233140, 1530858267293, 1530858267900]  # change accordingly
+pothole_array = []  # change accordingly
 # list of timestamp for bumps
 bump_array = []  # change accordingly
 # list of timestamp for speed breakers
