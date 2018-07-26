@@ -3,7 +3,7 @@ import json
 # give the data type as 'raw' or 'reoriented'
 type = 'classified'
 # name of the file you want to edit
-file_name = 'test' # change accordingly
+file_name = 'j7Uduwila1PotholeModel' # change accordingly
 
 with open('../../input/json/'+type+'/'+file_name+'.json') as data_file:
     file = json.load(data_file)
