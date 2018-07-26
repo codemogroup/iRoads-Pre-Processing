@@ -1,0 +1,79 @@
+import json
+import math
+
+# give the data type as 'raw' or 'reoriented'
+type = 'engineered'
+# name of the file you want to edit
+file_name = 'TrainingData'  # change accordingly
+
+with open('../../input/json/'+type+'/'+file_name+'.json') as data_file:
+    file = json.load(data_file)
+    file_length = len(file)
+    print(file_length)
+    # list of anomalies found
+    anomaly_array = []
+    for index, element in enumerate(file):
+        acceX_raw = element['acceX_raw']
+        acceY_raw = element['acceY_raw']
+        acceZ_raw = element['acceZ_raw']
+
+        if index > 4 and index < file_length - 5:
+
+            element['acceX_n1'] = file[index - 1]['acceX_raw']-acceX_raw
+            element['acceX_n2'] = file[index - 2]['acceX_raw']-acceX_raw
+            element['acceX_n3'] = file[index - 3]['acceX_raw']-acceX_raw
+            element['acceX_n4'] = file[index - 4]['acceX_raw']-acceX_raw
+            element['acceX_n5'] = file[index - 5]['acceX_raw']-acceX_raw
+
+            element['acceX_p1'] = file[index + 1]['acceX_raw'] - acceX_raw
+            element['acceX_p2'] = file[index + 2]['acceX_raw'] - acceX_raw
+            element['acceX_p3'] = file[index + 3]['acceX_raw'] - acceX_raw
+            element['acceX_p4'] = file[index + 4]['acceX_raw'] - acceX_raw
+            element['acceX_p5'] = file[index + 5]['acceX_raw'] - acceX_raw
+
+            element['acceY_n1'] = file[index - 1]['acceY_raw'] - acceY_raw
+            element['acceY_n2'] = file[index - 2]['acceY_raw'] - acceY_raw
+            element['acceY_n3'] = file[index - 3]['acceY_raw'] - acceY_raw
+            element['acceY_n4'] = file[index - 4]['acceY_raw'] - acceY_raw
+            element['acceY_n5'] = file[index - 5]['acceY_raw'] - acceY_raw
+
+            element['acceY_p1'] = file[index + 1]['acceY_raw'] - acceY_raw
+            element['acceY_p2'] = file[index + 2]['acceY_raw'] - acceY_raw
+            element['acceY_p3'] = file[index + 3]['acceY_raw'] - acceY_raw
+            element['acceY_p4'] = file[index + 4]['acceY_raw'] - acceY_raw
+            element['acceY_p5'] = file[index + 5]['acceY_raw'] - acceY_raw
+
+            element['acceZ_n1'] = file[index - 1]['acceZ_raw'] - acceZ_raw
+            element['acceZ_n2'] = file[index - 2]['acceZ_raw'] - acceZ_raw
+            element['acceZ_n3'] = file[index - 3]['acceZ_raw'] - acceZ_raw
+            element['acceZ_n4'] = file[index - 4]['acceZ_raw'] - acceZ_raw
+            element['acceZ_n5'] = file[index - 5]['acceZ_raw'] - acceZ_raw
+
+            element['acceZ_p1'] = file[index + 1]['acceZ_raw'] - acceZ_raw
+            element['acceZ_p2'] = file[index + 2]['acceZ_raw'] - acceZ_raw
+            element['acceZ_p3'] = file[index + 3]['acceZ_raw'] - acceZ_raw
+            element['acceZ_p4'] = file[index + 4]['acceZ_raw'] - acceZ_raw
+            element['acceZ_p5'] = file[index + 5]['acceZ_raw'] - acceZ_raw
+
+            X_n = math.sqrt(element['acceX_n1'] ** 2 + element['acceX_n2'] ** 2 + element['acceX_n3'] ** 2 + element[
+                'acceX_n4'] ** 2 + element['acceX_n5'] ** 2)
+            X_p = math.sqrt(element['acceX_p1'] ** 2 + element['acceX_p2'] ** 2 + element['acceX_p3'] ** 2 + element[
+                'acceX_p4'] ** 2 + element['acceX_p5'] ** 2)
+            element['rms_X'] = (X_n + X_p) / 10
+
+            Y_n = math.sqrt(element['acceY_n1'] ** 2 + element['acceY_n2'] ** 2 + element['acceY_n3'] ** 2 + element[
+                'acceY_n4'] ** 2 + element['acceY_n5'] ** 2)
+            Y_p = math.sqrt(element['acceY_p1'] ** 2 + element['acceY_p2'] ** 2 + element['acceY_p3'] ** 2 + element[
+                'acceY_p4'] ** 2 + element['acceY_p5'] ** 2)
+            element['rms_Y'] = (Y_n + Y_p) / 10
+
+            Z_n = math.sqrt(element['acceZ_n1'] ** 2 + element['acceZ_n2'] ** 2 + element['acceZ_n3'] ** 2 + element[
+                'acceZ_n4'] ** 2 + element['acceZ_n5'] ** 2)
+            Z_p = math.sqrt(element['acceZ_p1'] ** 2 + element['acceZ_p2'] ** 2 + element['acceZ_p3'] ** 2 + element[
+                'acceZ_p4'] ** 2 + element['acceZ_p5'] ** 2)
+            element['rms_Z'] = (Z_n + Z_p) / 10
+
+    file = file[5 : file_length-5]
+    # file will be saved with the same name
+    with open('../../output/from_json/'+type+'/'+file_name+'.json', 'w') as out_file:
+        json.dump(file, out_file)
