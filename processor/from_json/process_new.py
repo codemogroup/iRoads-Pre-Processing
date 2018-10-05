@@ -32,11 +32,11 @@ with open('../../input/json/'+type+'/'+file_name+'.json') as data_file:
         time = float(element['time'])-start_time
         #  update if anomalies found
         if time in pothole_array:
-            current_anomaly = "P"
+            current_anomaly = "A"
             count = count +1
             # print(time)
         elif time in bump_array:
-            current_anomaly = "B"
+            current_anomaly = "A"
             count = count + 1
             # print(time)
         # else:
