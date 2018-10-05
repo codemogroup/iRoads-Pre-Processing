@@ -26,8 +26,9 @@ with open('../../input/json/'+type+'/'+file_name+'.json') as data_file:
     file = json.load(data_file)
     print(len(file))
     #  initiate as no anomalies
-    current_anomaly = "N"
+
     for element in file:
+        current_anomaly = "N"
         time = float(element['time'])-start_time
         #  update if anomalies found
         if time in pothole_array:
